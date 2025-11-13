@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Media } from '../models/media.model';
-import { resolveApiHost } from '../utils/api-host';
+import { resolveApiBase } from '../utils/api-host';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MediaService {
-  private readonly apiHost = resolveApiHost();
-  private readonly API_URL = `https://${this.apiHost}:8083/api/media`;
+  private readonly apiBase = resolveApiBase(8083);
+  private readonly API_URL = `${this.apiBase}/api/media`;
 
   constructor(private http: HttpClient) { }
 
@@ -42,6 +42,6 @@ export class MediaService {
    * Construire l'URL complète d'une image
    */
   getImageUrl(url: string): string {
-    return `https://${this.apiHost}:8083${url}`;
+    return `${this.apiBase}${url}`;
   }
 }

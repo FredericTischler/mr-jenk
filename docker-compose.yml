@@ -83,6 +83,7 @@ services:
     environment:
       SPRING_DATA_MONGODB_URI: mongodb://admin:admin123@mongodb:27017/ecommerce_users?authSource=admin
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9093
+      SERVER_SSL_ENABLED: "false"
     depends_on:
       mongodb:
         condition: service_healthy
@@ -103,6 +104,7 @@ services:
     environment:
       SPRING_DATA_MONGODB_URI: mongodb://admin:admin123@mongodb:27017/ecommerce_products?authSource=admin
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9093
+      SERVER_SSL_ENABLED: "false"
     depends_on:
       mongodb:
         condition: service_healthy
@@ -124,6 +126,7 @@ services:
       SPRING_DATA_MONGODB_URI: mongodb://admin:admin123@mongodb:27017/ecommerce_media?authSource=admin
       KAFKA_BOOTSTRAP_SERVERS: kafka:9093
       UPLOAD_DIRECTORY: /app/uploads
+      SERVER_SSL_ENABLED: "false"
     depends_on:
       mongodb:
         condition: service_healthy

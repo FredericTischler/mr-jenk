@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product as ProductModel } from '../models/product.model';
-import { resolveApiHost } from '../utils/api-host';
+import { resolveApiBase } from '../utils/api-host';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Product {
-  private readonly apiHost = resolveApiHost();
-  private readonly API_URL = `https://${this.apiHost}:8082/api/products`;
+  private readonly apiBase = resolveApiBase(8082);
+  private readonly API_URL = `${this.apiBase}/api/products`;
 
   constructor(private http: HttpClient) { }
 

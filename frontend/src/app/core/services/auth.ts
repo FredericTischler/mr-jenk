@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, tap } from 'rxjs';
 import { AuthResponse, LoginRequest, RegisterRequest, User } from '../models/user.model';
 import { Cart } from './cart';
-import { resolveApiHost } from '../utils/api-host';
+import { resolveApiBase } from '../utils/api-host';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Auth {
-  private readonly apiHost = resolveApiHost();
-  private readonly API_URL = `https://${this.apiHost}:8081/api/auth`;
+  private readonly apiBase = resolveApiBase(8081);
+  private readonly API_URL = `${this.apiBase}/api/auth`;
   private readonly TOKEN_KEY = 'auth_token';
   private readonly USER_KEY = 'current_user';
   
@@ -102,7 +102,7 @@ export class Auth {
     
     const options = token ? { headers: { 'Authorization': `Bearer ${token}` } } : {};
     
-    return this.http.post<{avatarUrl: string}>(`https://${this.apiHost}:8081/api/users/avatar`, formData, options)
+    return this.http.post<{avatarUrl: string}>(`${this.apiBase}/api/users/avatar`, formData, options)
       .pipe(
         tap(response => {
           // Mettre à jour l'avatar dans le localStorage
