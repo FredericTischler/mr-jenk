@@ -1,0 +1,15 @@
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/security/JwtAuthenticationFilter.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/dto/RegisterRequest.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/security/JwtUtil.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/controller/UserController.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/dto/AuthResponse.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/security/SecurityConfig.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/dto/UserResponse.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/config/WebConfig.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/controller/AuthController.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/model/User.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/repository/UserRepository.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/dto/LoginRequest.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/model/Role.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/service/UserService.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/user-service/src/main/java/com/ecommerce/user/UserServiceApplication.java

@@ -1,0 +1,11 @@
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/media-service/src/main/java/com/ecommerce/media/service/MediaService.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/media-service/src/main/java/com/ecommerce/media/dto/ProductEvent.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/media-service/src/main/java/com/ecommerce/media/security/SecurityConfig.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/media-service/src/main/java/com/ecommerce/media/security/JwtAuthenticationFilter.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/media-service/src/main/java/com/ecommerce/media/security/JwtUtil.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/media-service/src/main/java/com/ecommerce/media/MediaServiceApplication.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/media-service/src/main/java/com/ecommerce/media/service/KafkaConsumerService.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/media-service/src/main/java/com/ecommerce/media/model/Media.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/media-service/src/main/java/com/ecommerce/media/dto/MediaResponse.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/media-service/src/main/java/com/ecommerce/media/controller/MediaController.java
+/home/kheesi/Bureau/Zone01/Java/buy-01/backend/media-service/src/main/java/com/ecommerce/media/repository/MediaRepository.java
