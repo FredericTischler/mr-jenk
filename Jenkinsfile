@@ -129,47 +129,31 @@ docker compose -f docker-compose.stable.yml up -d --build
     post {
         success {
             echo 'Build SUCCESS'
-            script {
-                def recipients = env.EMAIL_RECIPIENTS?.trim()
-                def emailArgs = [
-                    subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                    body: """Build SUCCESS
+            mail(
+                to: env.EMAIL_RECIPIENTS,
+                subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """Build SUCCESS
 
 Job      : ${env.JOB_NAME}
 Build    : #${env.BUILD_NUMBER}
 Result   : ${currentBuild.currentResult}
 URL      : ${env.BUILD_URL}
 """
-                ]
-                if (recipients && recipients != 'CHANGE_ME@example.com') {
-                    emailArgs.to = recipients
-                } else {
-                    emailArgs.recipientProviders = [[$class: 'DefaultRecipientProvider']]
-                }
-                emailext(emailArgs)
-            }
+            )
         }
         failure {
             echo 'Build FAILURE'
-            script {
-                def recipients = env.EMAIL_RECIPIENTS?.trim()
-                def emailArgs = [
-                    subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                    body: """Build FAILURE
+            mail(
+                to: env.EMAIL_RECIPIENTS,
+                subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """Build FAILURE
 
 Job      : ${env.JOB_NAME}
 Build    : #${env.BUILD_NUMBER}
 Result   : ${currentBuild.currentResult}
 URL      : ${env.BUILD_URL}
 """
-                ]
-                if (recipients && recipients != 'CHANGE_ME@example.com') {
-                    emailArgs.to = recipients
-                } else {
-                    emailArgs.recipientProviders = [[$class: 'DefaultRecipientProvider']]
-                }
-                emailext(emailArgs)
-            }
+            )
         }
     }
 }
