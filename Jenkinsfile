@@ -78,7 +78,20 @@ done
                 dir('.') {
                     sh '''#!/bin/bash
 set -euo pipefail
-docker compose down || true
+cleanup_containers() {
+    local compose_file="$1"
+    [[ -f "$compose_file" ]] || return 0
+    local names
+    names=$(grep -E '^[[:space:]]*container_name:' "$compose_file" | sed -E 's/^[[:space:]]*container_name:[[:space:]]*//' | tr -d '"' || true)
+    [[ -z "${names:-}" ]] && return 0
+    while IFS= read -r cname; do
+        [[ -z "$cname" ]] && continue
+        docker rm -f "$cname" >/dev/null 2>&1 || true
+    done <<< "$names"
+}
+
+docker compose down --remove-orphans || true
+cleanup_containers "docker-compose.yml"
 docker compose up -d --build
 '''
                 }
@@ -88,7 +101,20 @@ docker compose up -d --build
                     dir('.') {
                         sh '''#!/bin/bash
 set -euo pipefail
-docker compose down || true
+cleanup_containers() {
+    local compose_file="$1"
+    [[ -f "$compose_file" ]] || return 0
+    local names
+    names=$(grep -E '^[[:space:]]*container_name:' "$compose_file" | sed -E 's/^[[:space:]]*container_name:[[:space:]]*//' | tr -d '"' || true)
+    [[ -z "${names:-}" ]] && return 0
+    while IFS= read -r cname; do
+        [[ -z "$cname" ]] && continue
+        docker rm -f "$cname" >/dev/null 2>&1 || true
+    done <<< "$names"
+}
+
+docker compose down --remove-orphans || true
+cleanup_containers "docker-compose.stable.yml"
 docker compose -f docker-compose.stable.yml up -d --build
 '''
                     }
