@@ -3,6 +3,9 @@ pipeline {
 	tools {
 		jdk 'JDK17'
 	}
+    environment {
+        EMAIL_RECIPIENTS = 'CHANGE_ME@example.com'
+    }
 
     stages {
         stage('Checkout') {
@@ -126,9 +129,31 @@ docker compose -f docker-compose.stable.yml up -d --build
     post {
         success {
             echo 'Build SUCCESS'
+            emailext(
+                to: env.EMAIL_RECIPIENTS,
+                subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """Build SUCCESS
+
+Job      : ${env.JOB_NAME}
+Build    : #${env.BUILD_NUMBER}
+Result   : ${currentBuild.currentResult}
+URL      : ${env.BUILD_URL}
+"""
+            )
         }
         failure {
             echo 'Build FAILURE'
+            emailext(
+                to: env.EMAIL_RECIPIENTS,
+                subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """Build FAILURE
+
+Job      : ${env.JOB_NAME}
+Build    : #${env.BUILD_NUMBER}
+Result   : ${currentBuild.currentResult}
+URL      : ${env.BUILD_URL}
+"""
+            )
         }
     }
 }
