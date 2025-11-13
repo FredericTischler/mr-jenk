@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product as ProductModel } from '../models/product.model';
+import { resolveApiHost } from '../utils/api-host';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Product {
-  private readonly API_URL = 'https://localhost:8082/api/products';
+  private readonly apiHost = resolveApiHost();
+  private readonly API_URL = `https://${this.apiHost}:8082/api/products`;
 
   constructor(private http: HttpClient) { }
 
@@ -67,4 +69,3 @@ export class Product {
     return this.http.get<ProductModel[]>(`${this.API_URL}/seller/my-products`);
   }
 }
-

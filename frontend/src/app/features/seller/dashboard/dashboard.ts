@@ -13,6 +13,7 @@ import { Product } from '../../../core/services/product';
 import { Auth } from '../../../core/services/auth';
 import { Product as ProductModel } from '../../../core/models/product.model';
 import { ProductFormDialog } from '../product-form-dialog/product-form-dialog';
+import { resolveApiHost } from '../../../core/utils/api-host';
 
 @Component({
   selector: 'app-dashboard',
@@ -36,6 +37,7 @@ export class Dashboard implements OnInit {
   loading = false;
   errorMessage = '';
   currentUser: any = null;
+  private readonly apiHost = resolveApiHost();
 
   constructor(
     private productService: Product,
@@ -51,7 +53,7 @@ export class Dashboard implements OnInit {
   }
 
   getAvatarUrl(avatar: string): string {
-    return `https://localhost:8081${avatar}`;
+    return `https://${this.apiHost}:8081${avatar}`;
   }
 
   loadMyProducts(): void {
