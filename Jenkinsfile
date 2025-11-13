@@ -4,7 +4,7 @@ pipeline {
 		jdk 'JDK17'
 	}
     environment {
-        EMAIL_RECIPIENTS = 'CHANGE_ME@example.com'
+        EMAIL_RECIPIENTS = 'frederic.tischler2@gmail.com'
     }
 
     stages {
