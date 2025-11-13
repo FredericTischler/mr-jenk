@@ -75,7 +75,24 @@ done
         }
         stage('Deploy') {
             steps {
-                echo 'Deploy'
+                dir('.') {
+                    sh '''#!/bin/bash
+set -euo pipefail
+docker compose down || true
+docker compose up -d --build
+'''
+                }
+            }
+            post {
+                failure {
+                    dir('.') {
+                        sh '''#!/bin/bash
+set -euo pipefail
+docker compose down || true
+docker compose -f docker-compose.stable.yml up -d --build
+'''
+                    }
+                }
             }
         }
     }
