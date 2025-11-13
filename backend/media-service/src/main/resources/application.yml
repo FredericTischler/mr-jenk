@@ -37,3 +37,7 @@ kafka:
 
 upload:
   directory: ./uploads/media
+
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:8084,http://localhost:4200,https://localhost:4200}

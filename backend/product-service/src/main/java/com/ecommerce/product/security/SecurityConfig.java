@@ -1,6 +1,7 @@
 package com.ecommerce.product.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -14,6 +15,9 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * SECURITY CONFIGURATION
@@ -31,6 +35,9 @@ public class SecurityConfig {
     
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
+    
+    @Value("${app.cors.allowed-origins:*}")
+    private String allowedOriginsProperty;
     
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -74,12 +81,12 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         
-        configuration.setAllowedOrigins(Arrays.asList(
-            "http://localhost:4200",
-            "https://localhost:4200",
-            "http://localhost:3000",
-            "https://localhost:3000"
-        ));
+        List<String> origins = parseAllowedOrigins();
+        if (origins.contains("*")) {
+            configuration.setAllowedOriginPatterns(Collections.singletonList("*"));
+        } else {
+            configuration.setAllowedOrigins(origins);
+        }
         
         configuration.setAllowedMethods(Arrays.asList(
             "GET", "POST", "PUT", "DELETE", "OPTIONS"
@@ -97,5 +104,15 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         
         return source;
+    }
+    
+    private List<String> parseAllowedOrigins() {
+        if (allowedOriginsProperty == null || allowedOriginsProperty.isBlank()) {
+            return Collections.singletonList("*");
+        }
+        return Arrays.stream(allowedOriginsProperty.split(","))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .collect(Collectors.toList());
     }
 }
