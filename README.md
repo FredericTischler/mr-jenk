@@ -1,6 +1,6 @@
 # 🛍️ E-Commerce Platform - Microservices Architecture
 
-## 📌 Description du Projet  
+## 📌 Description du Projet
 
 Plateforme e-commerce **complète et fonctionnelle** développée avec une architecture microservices utilisant **Spring Boot** pour le backend et **Angular** pour le frontend.
 
