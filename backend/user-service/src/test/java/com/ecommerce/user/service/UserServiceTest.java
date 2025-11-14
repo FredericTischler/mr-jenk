@@ -128,8 +128,8 @@ class UserServiceTest {
         }
     }
 
-    @Test
-    void intentionallyFailingTest_shouldAlwaysFail() {
-        assertThat("expected to fail").isEqualTo("this will never match");
-    }
+    //@Test
+    //void intentionallyFailingTest_shouldAlwaysFail() {
+     //   assertThat("expected to fail").isEqualTo("this will never match");
+   // }
 }
