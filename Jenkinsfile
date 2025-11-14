@@ -5,6 +5,7 @@ pipeline {
 	}
     environment {
         EMAIL_RECIPIENTS = 'frederic.tischler2@gmail.com'
+        DEMO_API_TOKEN = credentials('demo-api-token')
     }
 
     stages {
@@ -96,6 +97,9 @@ cleanup_containers() {
 docker compose down --remove-orphans || true
 cleanup_containers "docker-compose.yml"
 docker compose up -d --build
+
+echo "Using secured API token for deployment (valeur masquée dans les logs)"
+# Exemple d'utilisation : curl -H "Authorization: Bearer $DEMO_API_TOKEN" ...
 '''
                 }
             }
